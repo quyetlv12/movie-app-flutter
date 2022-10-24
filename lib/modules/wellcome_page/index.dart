@@ -22,30 +22,29 @@ class _WellcomePageState extends State<WellcomePage> {
             child: Center(
                 child: Text(
               'CHÀO MỪNG BẠN ĐẾN VỚI MOLA TV',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(fontSize: 16, color: Colors.white),
             )),
           ),
           Container(
-            child: Center(child: Image.asset("images/logo.png")),
+            child: Center(child: Image.asset("assets/images/logo.png")),
           ),
           Container(
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Center(
+              child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Center(
                 child: Text(
               'Vui lòng đăng nhập để sử dụng ứng dụng',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            )) ,
-            )
-          ),
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            )),
+          )),
           Container(
             child: Center(
                 child: Padding(
               padding: EdgeInsets.all(10),
               child: ElevatedButton.icon(
-                label: Text('LOGIN WITH FACEBOOK'),
-                 style: ElevatedButton.styleFrom(
-                   minimumSize: Size(300, 50),
+                label: Text('Đăng nhập với Facebook'),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(300, 50),
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
@@ -60,9 +59,9 @@ class _WellcomePageState extends State<WellcomePage> {
               padding: EdgeInsets.all(10),
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                   minimumSize: Size(300, 50),
+                  minimumSize: Size(300, 50),
                 ),
-                label: Text('LOGIN WITH GOOGLE'),
+                label: Text('Đăng nhập với Google'),
                 onPressed: () {
                   Navigator.pushNamed(context, '/login');
                 },
@@ -75,11 +74,10 @@ class _WellcomePageState extends State<WellcomePage> {
                 child: Padding(
               padding: EdgeInsets.all(10),
               child: ElevatedButton.icon(
-                 style: ElevatedButton.styleFrom(
-                   minimumSize: Size(300, 50),
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(300, 50),
                 ),
-                label: Text('TIẾP TỤC MÀ KHÔNG ĐĂNG NHẬP '),
-                
+                label: Text('Tiếp tục mà không đăng nhập '),
                 onPressed: () {
                   Navigator.pushNamed(context, '/home');
                 },

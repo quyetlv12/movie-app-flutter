@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:movieapp/models/movie_json.dart';
+import 'package:movieapp/widgets/stateLess/list_movie_overview.dart';
 
 class HomePage extends StatelessWidget {
-  
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text("HOMPAGE HERE"),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: ListMovieOverView(),
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
