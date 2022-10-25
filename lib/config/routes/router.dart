@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/modules/home/HomePage.dart';
 import 'package:movieapp/modules/login/Login.dart';
+import 'package:movieapp/modules/search/search.dart';
 import 'package:movieapp/modules/signup/SignUp.dart';
 import 'package:movieapp/modules/wellcome_page/index.dart';
 
@@ -12,6 +13,8 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => HomePage());
     case '/login':
       return MaterialPageRoute(builder: (context) => LoginPage());
+    case '/search':
+      return MaterialPageRoute(builder: (context) => SearchPage());
     case '/signup':
       return MaterialPageRoute(builder: (context) => SignUp());
     default:

@@ -1,44 +1,60 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:http/http.dart' as http;
+import 'package:movieapp/models/movie_json.dart';
+import 'package:movieapp/services/movie_service.dart';
 
-class ListMovieOverView extends StatefulWidget {
-  const ListMovieOverView({super.key});
+class MovieOverViewList extends StatefulWidget {
+  const MovieOverViewList({super.key});
 
   @override
-  State<ListMovieOverView> createState() => _ListMovieOverViewState();
+  State<MovieOverViewList> createState() => _MovieOverViewListState();
 }
 
-class _ListMovieOverViewState extends State<ListMovieOverView> {
-  Future getAllMovie() async {
-    var response = await http
-        .get(Uri.https('63569a819243cf412f890457.mockapi.io', 'moive'));
-    var dataJson = jsonDecode(response.body);
-    print(dataJson.length);
-    return dataJson;
+class _MovieOverViewListState extends State<MovieOverViewList> {
+  List<Movie>? movies;
+  var isLoaded = false;
+  @override
+  void initState() {
+    super.initState();
+    // fetch data to api
+    getData();
   }
 
-  @override
+  getData() async {
+    movies = await MovieService().getMovie();
+    if (movies != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return Container(
-              child: Text('Loading'),
+    return Scaffold(
+      body: Visibility(
+        visible: isLoaded,
+        child: ListView.builder(
+          itemCount: movies?.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Image.network(movies![index].poster,
+                            fit: BoxFit.cover, height: 200.0, width: 200.0),
+                      ),
+                      Container(
+                        child: Text(movies![index].title),
+                      )
+                    ],
+                  )),
             );
-          } else {
-            return Container(
-              child: Text("Data Here"),
-            );
-          }
-        },
-        future: getAllMovie(),
+          },
+        ),
+        replacement: const Center(child: CircularProgressIndicator()),
       ),
     );
   }

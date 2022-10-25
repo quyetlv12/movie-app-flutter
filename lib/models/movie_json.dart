@@ -1,46 +1,39 @@
-class movieModel {
-  String? _imdbID;
-  String? _title;
-  String? _year;
-  String? _poster;
+// To parse this JSON data, do
+//
+//     final movie = movieFromJson(jsonString);
 
-  movieModel({String? imdbID, String? title, String? year, String? poster}) {
-    if (imdbID != null) {
-      this._imdbID = imdbID;
-    }
-    if (title != null) {
-      this._title = title;
-    }
-    if (year != null) {
-      this._year = year;
-    }
-    if (poster != null) {
-      this._poster = poster;
-    }
-  }
+import 'dart:convert';
 
-  String? get imdbID => _imdbID;
-  set imdbID(String? imdbID) => _imdbID = imdbID;
-  String? get title => _title;
-  set title(String? title) => _title = title;
-  String? get year => _year;
-  set year(String? year) => _year = year;
-  String? get poster => _poster;
-  set poster(String? poster) => _poster = poster;
+List<Movie> movieFromJson(String str) =>
+    List<Movie>.from(json.decode(str).map((x) => Movie.fromJson(x)));
 
-  movieModel.fromJson(Map<String, dynamic> json) {
-    _imdbID = json['imdbID'];
-    _title = json['Title'];
-    _year = json['Year'];
-    _poster = json['Poster'];
-  }
+String movieToJson(List<Movie> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imdbID'] = this._imdbID;
-    data['Title'] = this._title;
-    data['Year'] = this._year;
-    data['Poster'] = this._poster;
-    return data;
-  }
+class Movie {
+  Movie({
+    required this.imdbId,
+    required this.title,
+    required this.year,
+    required this.poster,
+  });
+
+  String imdbId;
+  String title;
+  String year;
+  String poster;
+
+  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
+        imdbId: json["imdbID"],
+        title: json["title"],
+        year: json["year"],
+        poster: json["poster"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "imdbID": imdbId,
+        "title": title,
+        "year": year,
+        "poster": poster,
+      };
 }
