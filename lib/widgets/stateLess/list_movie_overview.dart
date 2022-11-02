@@ -38,20 +38,42 @@ class _MovieOverViewListState extends State<MovieOverViewList> {
           itemCount: movies?.length,
           itemBuilder: (context, index) {
             return Card(
+                child: Container(
+              alignment: Alignment.topLeft,
               child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      Container(
-                        child: Image.network(movies![index].poster,
-                            fit: BoxFit.cover, height: 200.0, width: 200.0),
-                      ),
-                      Container(
-                        child: Text(movies![index].title),
+                      Stack(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                child: Image.network(
+                                  movies![index].poster,
+                                  width: 100,
+                                ),
+                                width: 100,
+                                // clipBehavior: ,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: Text(movies![index].title,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600)),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
                       )
                     ],
                   )),
-            );
+            ));
           },
         ),
         replacement: const Center(child: CircularProgressIndicator()),

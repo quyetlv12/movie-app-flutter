@@ -34,11 +34,21 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(20),
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/");
-          },
-          child: Icon(Icons.login_sharp)),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          // FloatingActionButton(
+          //     onPressed: () {
+          //       Navigator.pushNamed(context, "/");
+          //     },
+          //     child: Icon(Icons.login_sharp)),
+          FloatingActionButton(
+              onPressed: () {
+                // Navigator.pushNamed(context, "/");
+              },
+              child: Icon(Icons.sunny))
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
