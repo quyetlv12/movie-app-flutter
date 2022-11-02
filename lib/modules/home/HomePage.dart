@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movieapp/getX/controller/appController.dart';
 import 'package:movieapp/modules/favourite/favourite.dart';
 import 'package:movieapp/modules/search/search.dart';
 import 'package:movieapp/modules/setting/setting.dart';
+import 'package:movieapp/widgets/list_movie_widget.dart';
 import 'package:movieapp/widgets/stateLess/list_movie_overview.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,9 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
+  final controller = Get.put(AppController());
   static const List<Widget> _widgetOptions = <Widget>[
-    MovieOverViewList(),
+    ListMovies(),
     SearchPage(),
     FavouritePage(),
     SettingPage()
@@ -37,16 +40,16 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // FloatingActionButton(
-          //     onPressed: () {
-          //       Navigator.pushNamed(context, "/");
-          //     },
-          //     child: Icon(Icons.login_sharp)),
           FloatingActionButton(
               onPressed: () {
-                // Navigator.pushNamed(context, "/");
+                controller.changeThemeConfig(
+                    controller.themeConfig.value == Brightness.dark
+                        ? Brightness.light
+                        : Brightness.dark);
               },
-              child: Icon(Icons.sunny))
+              child: Icon(controller.themeConfig.value == Brightness.dark
+                  ? Icons.sunny
+                  : Icons.dark_mode))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
