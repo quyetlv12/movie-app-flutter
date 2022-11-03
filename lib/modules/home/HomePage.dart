@@ -5,7 +5,6 @@ import 'package:movieapp/modules/favourite/favourite.dart';
 import 'package:movieapp/modules/search/search.dart';
 import 'package:movieapp/modules/setting/setting.dart';
 import 'package:movieapp/widgets/list_movie_widget.dart';
-import 'package:movieapp/widgets/stateLess/list_movie_overview.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -57,26 +56,26 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Trang chủ',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Tìm kiếm',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
             label: 'Vé của tôi',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Cài đặt',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pinkAccent,
+        selectedItemColor: Colors.orangeAccent,
         onTap: _onItemTapped,
       ),
     );
