@@ -13,7 +13,31 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Search page"),
+      child: Scaffold(
+        body: Container(
+          child: Column(children: [
+            Container(
+                alignment: AlignmentDirectional.topStart,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
+                  child: Text(
+                    "Tìm kiếm",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                )),
+            Stack(
+              alignment: AlignmentDirectional.centerEnd,
+              children: [
+                TextFormField(),
+                ElevatedButton.icon(
+                    onPressed: null,
+                    icon: Icon(Icons.search),
+                    label: Text("hello")),
+              ],
+            )
+          ]),
+        ),
+      ),
     );
   }
 }

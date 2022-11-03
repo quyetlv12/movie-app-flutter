@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movieapp/getX/controller/appController.dart';
 import 'package:movieapp/modules/favourite/favourite.dart';
 import 'package:movieapp/modules/search/search.dart';
 import 'package:movieapp/modules/setting/setting.dart';
-import 'package:movieapp/widgets/stateLess/list_movie_overview.dart';
+import 'package:movieapp/widgets/list_movie_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,9 +15,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-
+  final controller = Get.put(AppController());
   static const List<Widget> _widgetOptions = <Widget>[
-    MovieOverViewList(),
+    ListMovies(),
     SearchPage(),
     FavouritePage(),
     SettingPage()
@@ -34,36 +36,46 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(20),
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/");
-          },
-          child: Icon(Icons.login_sharp)),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+              onPressed: () {
+                controller.changeThemeConfig(
+                    controller.themeConfig.value == Brightness.dark
+                        ? Brightness.light
+                        : Brightness.dark);
+              },
+              child: Icon(controller.themeConfig.value == Brightness.dark
+                  ? Icons.sunny
+                  : Icons.dark_mode))
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Trang chủ',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Tìm kiếm',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
             label: 'Vé của tôi',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Cài đặt',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.blueAccent,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.pinkAccent,
+        selectedItemColor: Colors.orangeAccent,
         onTap: _onItemTapped,
       ),
     );
