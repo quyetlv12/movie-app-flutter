@@ -13,6 +13,7 @@ class ListMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final moviesController = Get.put(MoviesController());
+
     return Container(
         child: Obx(() => Scaffold(
               body: Visibility(
@@ -30,6 +31,15 @@ class ListMovies extends StatelessWidget {
                         color: Colors.white,
                         child: Column(
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: Container(
+                                child: Image.network(
+                                  moviesController.moviesList[index].posterUrl,
+                                  height: 210,
+                                ),
+                              ),
+                            ),
                             Container(
                               margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
                               child: Padding(
