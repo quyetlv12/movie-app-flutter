@@ -24,27 +24,61 @@ class ListMovies extends StatelessWidget {
                     mainAxisSpacing: 16,
                     staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: 300,
-                        width: 100,
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                                child: Center(
-                                    child: TitleWidget(
-                                  content:
-                                      moviesController.moviesList[index].name,
-                                )),
-                              ),
+                      return Card(
+                          borderOnForeground: true,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          )),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Container(
+                                    child: Image.network(
+                                      moviesController
+                                          .moviesList[index].posterUrl,
+                                      height: 210,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 50,
+                                  margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                    child: Center(
+                                        child: TitleWidget(
+                                      content: moviesController
+                                          .moviesList[index].name,
+                                    )),
+                                  ),
+                                ),
+                                Container(
+                                  child: Center(
+                                      child: OutlinedButton.icon(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.orange)),
+                                    onPressed: null,
+                                    icon: Icon(
+                                      Icons.play_arrow_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    label: Text(
+                                      "Xem phim",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
+                                )
+                              ],
                             ),
-                          ],
-                        ),
-                      );
+                          ));
                     }),
                 replacement: const Center(child: CircularProgressIndicator()),
               ),
