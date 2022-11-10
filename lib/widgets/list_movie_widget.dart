@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/getX/controller/movie_controller.dart';
+import 'package:movieapp/modules/movie_detail/movies_detail.dart';
 import 'package:movieapp/widgets/title_widget.dart';
 
 class ListMovies extends StatelessWidget {
@@ -40,7 +41,7 @@ class ListMovies extends StatelessWidget {
                                   child: Container(
                                     child: Image.network(
                                       moviesController
-                                          .moviesList[index].posterUrl,
+                                          .moviesList[index].thumbUrl,
                                       height: 210,
                                     ),
                                   ),
@@ -65,7 +66,19 @@ class ListMovies extends StatelessWidget {
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.orange)),
-                                    onPressed: null,
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                MoviesDetailScreen(
+                                                    movie: moviesController
+                                                        .moviesList[index]),
+                                          ));
+                                      moviesController.changeSlugId(
+                                          moviesController
+                                              .moviesList[index].slug);
+                                    },
                                     icon: Icon(
                                       Icons.play_arrow_outlined,
                                       color: Colors.white,
