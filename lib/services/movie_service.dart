@@ -32,27 +32,4 @@ class MovieService {
       return null;
     }
   }
-
-  static Future<List<MovieDetail>?> getMovieDetail(String slug) async {
-    final uri = Uri.https('www.ophim1.com', '/phim/${slug}');
-    var response = await http.get(uri, headers: {
-      HttpHeaders.contentTypeHeader: 'application/json',
-    });
-
-    if (response.statusCode == 200) {
-      final movie = jsonDecode(response.body)['movie'];
-      final episodes = jsonDecode(response.body)['episodes'];
-      print(episodes);
-      // movie
-      // final String pathImage = jsonDecode(response.body)['pathImage'];
-      // // generate again array and replace link poster
-      // for (var i = 0; i < result.length; i++) {
-      //   result[i]['poster_url'] = 'http://img.ophim1.cc/uploads/movies/' +
-      //       '${result[i]['thumb_url'] != "" ? result[i]['thumb_url'] : result[i]['poster_url']}';
-      // }
-      // return null
-    } else {
-      return null;
-    }
-  }
 }

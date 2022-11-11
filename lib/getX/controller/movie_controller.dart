@@ -40,7 +40,6 @@ class MoviesController extends GetxController {
     if (response.statusCode == 200) {
       final movie = jsonDecode(response.body)['movie'];
       final List episodes = jsonDecode(response.body)['episodes'];
-      print(episodes);
       this.episodesList.value =
           episodes.map((e) => EpisodesModel.fromJson(e)).toList();
     }

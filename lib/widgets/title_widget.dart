@@ -7,7 +7,10 @@ import 'package:movieapp/getX/controller/appController.dart';
 
 class TitleWidget extends StatelessWidget {
   late String content = '';
-  TitleWidget({required this.content});
+  late String configOpts = '';
+  TitleWidget({
+    required this.content,
+  });
 
   @override
   Widget build(BuildContext context) {

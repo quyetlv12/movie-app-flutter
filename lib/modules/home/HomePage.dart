@@ -16,11 +16,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final controller = Get.put(AppController());
+  // final
   static const List<Widget> _widgetOptions = <Widget>[
     ListMovies(),
     SearchPage(),
     FavouritePage(),
-    SettingPage()
+    // controller.loginStatus == true ? SettingPage() :  SettingPage()
   ];
   @override
   void _onItemTapped(int index) {
